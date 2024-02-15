@@ -8,21 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		49EAEC972B7D78C6000E3C7D /* FecaliusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC962B7D78C6000E3C7D /* FecaliusApp.swift */; };
-		49EAEC992B7D78C6000E3C7D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC982B7D78C6000E3C7D /* ContentView.swift */; };
-		49EAEC9B2B7D78C6000E3C7D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC9A2B7D78C6000E3C7D /* Item.swift */; };
+		49EAEC992B7D78C6000E3C7D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC982B7D78C6000E3C7D /* HomeView.swift */; };
+		49EAEC9B2B7D78C6000E3C7D /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC9A2B7D78C6000E3C7D /* Store.swift */; };
 		49EAEC9D2B7D78C7000E3C7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49EAEC9C2B7D78C7000E3C7D /* Assets.xcassets */; };
 		49EAECA12B7D78C7000E3C7D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49EAECA02B7D78C7000E3C7D /* Preview Assets.xcassets */; };
+		49EAECA92B7D8773000E3C7D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAECA82B7D8773000E3C7D /* Extensions.swift */; };
+		49EAECAB2B7D890C000E3C7D /* HomeSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAECAA2B7D890C000E3C7D /* HomeSheetView.swift */; };
+		49EAECAE2B7DA758000E3C7D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EAECAD2B7DA758000E3C7D /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		49EAEC932B7D78C6000E3C7D /* Fecalius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fecalius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EAEC962B7D78C6000E3C7D /* FecaliusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FecaliusApp.swift; sourceTree = "<group>"; };
-		49EAEC982B7D78C6000E3C7D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		49EAEC9A2B7D78C6000E3C7D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		49EAEC982B7D78C6000E3C7D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		49EAEC9A2B7D78C6000E3C7D /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		49EAEC9C2B7D78C7000E3C7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49EAEC9E2B7D78C7000E3C7D /* Fecalius.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fecalius.entitlements; sourceTree = "<group>"; };
 		49EAECA02B7D78C7000E3C7D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		49EAECA22B7D78C7000E3C7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49EAECA82B7D8773000E3C7D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		49EAECAA2B7D890C000E3C7D /* HomeSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSheetView.swift; sourceTree = "<group>"; };
+		49EAECAD2B7DA758000E3C7D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49EAECAE2B7DA758000E3C7D /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +48,7 @@
 			children = (
 				49EAEC952B7D78C6000E3C7D /* Fecalius */,
 				49EAEC942B7D78C6000E3C7D /* Products */,
+				49EAECAC2B7DA758000E3C7D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,8 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				49EAEC962B7D78C6000E3C7D /* FecaliusApp.swift */,
-				49EAEC982B7D78C6000E3C7D /* ContentView.swift */,
-				49EAEC9A2B7D78C6000E3C7D /* Item.swift */,
+				49EAEC982B7D78C6000E3C7D /* HomeView.swift */,
+				49EAECAA2B7D890C000E3C7D /* HomeSheetView.swift */,
+				49EAECA82B7D8773000E3C7D /* Extensions.swift */,
+				49EAEC9A2B7D78C6000E3C7D /* Store.swift */,
 				49EAEC9C2B7D78C7000E3C7D /* Assets.xcassets */,
 				49EAEC9E2B7D78C7000E3C7D /* Fecalius.entitlements */,
 				49EAECA22B7D78C7000E3C7D /* Info.plist */,
@@ -72,6 +82,14 @@
 				49EAECA02B7D78C7000E3C7D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		49EAECAC2B7DA758000E3C7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49EAECAD2B7DA758000E3C7D /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,9 +162,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49EAEC992B7D78C6000E3C7D /* ContentView.swift in Sources */,
-				49EAEC9B2B7D78C6000E3C7D /* Item.swift in Sources */,
+				49EAEC992B7D78C6000E3C7D /* HomeView.swift in Sources */,
+				49EAEC9B2B7D78C6000E3C7D /* Store.swift in Sources */,
 				49EAEC972B7D78C6000E3C7D /* FecaliusApp.swift in Sources */,
+				49EAECAB2B7D890C000E3C7D /* HomeSheetView.swift in Sources */,
+				49EAECA92B7D8773000E3C7D /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +298,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Fecalius/Preview Content\"";
 				DEVELOPMENT_TEAM = MRKVA8MLPY;
 				ENABLE_HARDENED_RUNTIME = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fecalius/Info.plist;
@@ -317,6 +338,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Fecalius/Preview Content\"";
 				DEVELOPMENT_TEAM = MRKVA8MLPY;
 				ENABLE_HARDENED_RUNTIME = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fecalius/Info.plist;

@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "fecalius.jpg",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -51,9 +52,16 @@
       "size" : "512x512"
     },
     {
+      "filename" : "fecalius 2.jpg",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
+    },
+    {
+      "filename" : "fecalius 1.jpg",
+      "idiom" : "universal",
+      "platform" : "watchos",
+      "size" : "1024x1024"
     }
   ],
   "info" : {
