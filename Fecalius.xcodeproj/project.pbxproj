@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49B79A572B7F56AA001F3B79 /* AddPoopSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B79A562B7F56AA001F3B79 /* AddPoopSheetView.swift */; };
 		49EAEC972B7D78C6000E3C7D /* FecaliusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC962B7D78C6000E3C7D /* FecaliusApp.swift */; };
 		49EAEC992B7D78C6000E3C7D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC982B7D78C6000E3C7D /* HomeView.swift */; };
 		49EAEC9B2B7D78C6000E3C7D /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC9A2B7D78C6000E3C7D /* Store.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49B79A562B7F56AA001F3B79 /* AddPoopSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPoopSheetView.swift; sourceTree = "<group>"; };
 		49EAEC932B7D78C6000E3C7D /* Fecalius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fecalius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EAEC962B7D78C6000E3C7D /* FecaliusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FecaliusApp.swift; sourceTree = "<group>"; };
 		49EAEC982B7D78C6000E3C7D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				49EAEC962B7D78C6000E3C7D /* FecaliusApp.swift */,
 				49EAEC982B7D78C6000E3C7D /* HomeView.swift */,
 				49EAECAA2B7D890C000E3C7D /* HomeSheetView.swift */,
+				49B79A562B7F56AA001F3B79 /* AddPoopSheetView.swift */,
 				49EAECA82B7D8773000E3C7D /* Extensions.swift */,
 				49EAEC9A2B7D78C6000E3C7D /* Store.swift */,
 				49EAEC9C2B7D78C7000E3C7D /* Assets.xcassets */,
@@ -162,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49B79A572B7F56AA001F3B79 /* AddPoopSheetView.swift in Sources */,
 				49EAEC992B7D78C6000E3C7D /* HomeView.swift in Sources */,
 				49EAEC9B2B7D78C6000E3C7D /* Store.swift in Sources */,
 				49EAEC972B7D78C6000E3C7D /* FecaliusApp.swift in Sources */,
