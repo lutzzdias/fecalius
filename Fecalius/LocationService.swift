@@ -7,19 +7,10 @@
 
 import MapKit
 
-enum MapDetails {
-    static let defaultLocation = CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054)
-    static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25)
-}
-
 @Observable
 class LocationService: NSObject, CLLocationManagerDelegate {
     
-    var locationManager: CLLocationManager?
-    var region = MKCoordinateRegion(
-        center: MapDetails.defaultLocation,
-        span: MapDetails.defaultSpan
-    )
+    private var locationManager: CLLocationManager?
     var isLocationDisabled = true
     
     func requestLocation() {
@@ -37,22 +28,14 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             locationManager.requestWhenInUseAuthorization()
             
         case .restricted, .denied:
-            // Disable location features
             isLocationDisabled = true
             
         case .authorizedAlways, .authorizedWhenInUse:
-            // TODO: not force unwrap
-            region = MKCoordinateRegion(
-                center: locationManager.location!.coordinate,
-                span: MapDetails.defaultSpan
-            )
             isLocationDisabled = false
             
         @unknown default:
             isLocationDisabled = true
         }
-        
-        print(isLocationDisabled)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
