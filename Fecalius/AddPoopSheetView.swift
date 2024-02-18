@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct AddPoopSheetView: View {
+    @Environment(\.dismiss) var dismiss
     @State var location: String = ""
     @State var observations: String = ""
     @State var timestamp: Date = Date.now
+    @State var rating: Int = 0
     
     var body: some View {
         Form {
@@ -24,6 +26,24 @@ struct AddPoopSheetView: View {
                 }
                 
                 DatePicker("Date", selection: $timestamp)
+            }
+            
+            Section("Rating") {
+                HStack {
+                    ForEach(1 ..< 5 + 1, id: \.self) { number in
+                        Button {
+                            rating = number
+                            print(rating)
+                        } label: {
+                            number > rating ?
+                            Image(systemName: "star")
+                                .foregroundStyle(Color.yellow)
+                            : Image(systemName: "star.fill")
+                                .foregroundStyle(Color.yellow)
+                        }
+                    }
+                }
+                .buttonStyle(.plain)
             }
             
             Section("Observations") {
@@ -40,6 +60,7 @@ struct AddPoopSheetView: View {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Cancel") {
                     print("cancelled")
+                    dismiss()
                 }
             }
         }
