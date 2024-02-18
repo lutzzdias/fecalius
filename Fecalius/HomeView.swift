@@ -14,7 +14,8 @@ struct HomeView: View {
     @State var showingSheet = true
     @State var position: MapCameraPosition = .userLocation(fallback: .automatic)
     
-    let locationService = LocationService()
+    @Bindable
+    var locationService = LocationService()
     
     var body: some View {
         Map(position: $position)
@@ -35,16 +36,15 @@ struct HomeView: View {
                     .presentationBackground(.thickMaterial)
             }
             .onAppear {
-                locationService.checkLocationIsEnabled()
+                locationService.requestLocation()
             }
-//            .alert(isPresented: $locationDisabled) {
-//                Alert (title: Text("Location data required to save poops"),
-//                       message: Text("Go to Settings?"),
-//                       primaryButton: .default(Text("Settings"), action: {
-//                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-//                }),
-//                       secondaryButton: .default(Text("Cancel")))
-//            }
+            .alert("Location error", isPresented: $locationService.isLocationDisabled) {
+                Button("Go to Settings") {
+                    UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
+                }
+            } message: {
+                Text("Fecalius needs your location to mark poops in the correct location.")
+            }
     }
 }
 
