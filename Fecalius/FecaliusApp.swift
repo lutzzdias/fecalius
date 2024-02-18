@@ -14,7 +14,6 @@ struct FecaliusApp: App {
         let schema = Schema([
             User.self,
             Poop.self,
-            Location.self
         ])
         
         let modelConfiguration = ModelConfiguration(schema: schema)

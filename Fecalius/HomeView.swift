@@ -39,5 +39,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .modelContainer(for: [User.self, Poop.self, Location.self], inMemory: true)
+        .modelContainer(for: [User.self, Poop.self], inMemory: true)
 }
