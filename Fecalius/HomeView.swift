@@ -17,6 +17,7 @@ struct HomeView: View {
     @Bindable
     var locationService = LocationService()
     
+    // TODO: Handle position not shared
     var body: some View {
         Map(position: $position)
             .mapStyle(.standard(elevation: .realistic))
@@ -37,13 +38,6 @@ struct HomeView: View {
             }
             .onAppear {
                 locationService.requestLocation()
-            }
-            .alert("Location error", isPresented: $locationService.isLocationDisabled) {
-                Button("Go to Settings") {
-                    UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!)
-                }
-            } message: {
-                Text("Fecalius needs your location to mark poops in the correct location.")
             }
     }
 }
