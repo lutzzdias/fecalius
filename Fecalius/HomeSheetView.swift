@@ -6,9 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomeSheetView: View {
+    @Environment(\.modelContext) private var context
+    @Query(Poop.all) private var poops: [Poop]
+    
+    private var currMonth: [Poop] {
+        poops.filter( {Calendar.current.isDate(Date.now, equalTo: $0.timestamp, toGranularity: .month)})
+    }
+    
     @State var showingAddPoopSheet = false
+    @State var showingAllPoopsSheet = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -32,7 +41,7 @@ struct HomeSheetView: View {
             
             List {
                 Section {
-                    ForEach(Poop.mock.prefix(3)) { poop in
+                    ForEach(poops.prefix(3)) { poop in
                         HStack {
                             Image(systemName: "mappin.circle.fill")
                                 .resizable()
@@ -42,25 +51,16 @@ struct HomeSheetView: View {
                             
                             VStack(alignment: .leading) {
                                 HStack {
-                                    Text("Home")
+                                    Text(poop.location)
                                         .fontWeight(.semibold)
                                     Spacer()
                                     HStack {
-                                        Image(systemName: "star.fill")
-                                            .resizable()
-                                            .frame(width: 16, height: 16)
-                                        Image(systemName: "star.fill")
-                                            .resizable()
-                                            .frame(width: 16, height: 16)
-                                        Image(systemName: "star.fill")
-                                            .resizable()
-                                            .frame(width: 16, height: 16)
-                                        Image(systemName: "star.fill")
-                                            .resizable()
-                                            .frame(width: 16, height: 16)
-                                        Image(systemName: "star")
-                                            .resizable()
-                                            .frame(width: 16, height: 16)
+                                        ForEach(0..<5) { number in
+                                            Image(systemName: number > (poop.rating ?? 0) ? "star" : "star.fill")
+                                                .resizable()
+                                                .frame(width: 16, height: 16)
+                                                .foregroundStyle(Color.yellow)
+                                        }
                                     }
                                 }
                                 
@@ -81,6 +81,7 @@ struct HomeSheetView: View {
                         Spacer()
                         
                         Button {
+                            showingAllPoopsSheet.toggle()
                             print("more")
                         } label: {
                             Text("More")
