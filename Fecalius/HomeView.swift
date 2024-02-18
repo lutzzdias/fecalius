@@ -14,6 +14,8 @@ struct HomeView: View {
     @State var showingSheet = true
     @State var position: MapCameraPosition = .userLocation(fallback: .automatic)
     
+    let locationService = LocationService()
+    
     var body: some View {
         Map(position: $position)
             .mapStyle(.standard(elevation: .realistic))
@@ -32,8 +34,17 @@ struct HomeView: View {
                     .interactiveDismissDisabled()
                     .presentationBackground(.thickMaterial)
             }
-        
-        
+            .onAppear {
+                locationService.checkLocationIsEnabled()
+            }
+//            .alert(isPresented: $locationDisabled) {
+//                Alert (title: Text("Location data required to save poops"),
+//                       message: Text("Go to Settings?"),
+//                       primaryButton: .default(Text("Settings"), action: {
+//                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+//                }),
+//                       secondaryButton: .default(Text("Cancel")))
+//            }
     }
 }
 
