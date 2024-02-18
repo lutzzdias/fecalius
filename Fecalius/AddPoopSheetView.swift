@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddPoopSheetView: View {
+    @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     @State var location: String = ""
     @State var observations: String = ""
@@ -16,8 +17,9 @@ struct AddPoopSheetView: View {
     
     var body: some View {
         Form {
+            // Add Location component
+            
             Section("Test") {
-                
                 HStack {
                     Text("Location")
                     Spacer()
@@ -35,10 +37,7 @@ struct AddPoopSheetView: View {
                             rating = number
                             print(rating)
                         } label: {
-                            number > rating ?
-                            Image(systemName: "star")
-                                .foregroundStyle(Color.yellow)
-                            : Image(systemName: "star.fill")
+                            Image(systemName: number > rating ? "star" : "star.fill")
                                 .foregroundStyle(Color.yellow)
                         }
                     }
@@ -54,7 +53,18 @@ struct AddPoopSheetView: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save") {
-                    print("saved")
+                    // TODO: latitude, longitude and user
+                    let poop = Poop(
+                        latitude: 0,
+                        longitude: 0,
+                        location: location,
+                        observations: observations,
+                        rating: rating,
+                        timestamp: timestamp,
+                        user: User(username: "lutzzdias")
+                    )
+                    context.insert(poop)
+                    dismiss()
                 }
             }
             ToolbarItem(placement: .cancellationAction) {
