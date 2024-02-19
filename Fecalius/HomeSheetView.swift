@@ -42,33 +42,7 @@ struct HomeSheetView: View {
             List {
                 Section {
                     ForEach(poops.prefix(3)) { poop in
-                        HStack {
-                            Image(systemName: "mappin.circle.fill")
-                                .resizable()
-                                .frame(width: 32, height: 32)
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundStyle(.red.gradient)
-                            
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text(poop.location)
-                                        .fontWeight(.semibold)
-                                    Spacer()
-                                    HStack {
-                                        ForEach(0..<5) { number in
-                                            Image(systemName: number > (poop.rating ?? 0) ? "star" : "star.fill")
-                                                .resizable()
-                                                .frame(width: 16, height: 16)
-                                                .foregroundStyle(Color.yellow)
-                                        }
-                                    }
-                                }
-                                
-                                Text(poop.timestamp.formatted(date: .abbreviated, time: .shortened))
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
-                        }
+                        PoopRowView(poop: poop)
                     }
                 } header: {
                     HStack {
@@ -102,6 +76,11 @@ struct HomeSheetView: View {
         .sheet(isPresented: $showingAddPoopSheet) {
             NavigationStack {
                 AddPoopSheetView()
+            }
+        }
+        .sheet(isPresented: $showingAllPoopsSheet) {
+            NavigationStack {
+                AllPoopsSheetView()
             }
         }
     }

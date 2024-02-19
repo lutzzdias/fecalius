@@ -31,6 +31,22 @@ final class Poop {
     
     static var all = FetchDescriptor<Poop>(sortBy: [SortDescriptor(\.timestamp, order: .reverse)])
     
+    public struct classifiedPoops {
+        var sameDay: [Poop]
+        var sameMonth: [Poop]
+        var older: [Poop]
+    }
+    
+    static func classified(_ all: [Poop]) -> classifiedPoops {
+        var classified = classifiedPoops(sameDay: [], sameMonth: [], older: [])
+        for poop in all {
+            if (Calendar.current.isDate(poop.timestamp, inSameDayAs: Date.now)) { classified.sameDay.append(poop) }
+            else if (Calendar.current.isDate(poop.timestamp, equalTo: Date.now, toGranularity: .month)) { classified.sameMonth.append(poop)}
+            else { classified.older.append(poop) }
+        }
+        return classified
+    }
+    
     static private let mockUser = User(username: "lutzzdias")
     static let mock = [
         Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now, user: mockUser),
