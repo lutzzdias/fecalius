@@ -10,11 +10,12 @@
 		493240A52B82DFCE00A9900D /* PoopDetailSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493240A42B82DFCE00A9900D /* PoopDetailSheetView.swift */; };
 		493240A92B82E8CE00A9900D /* AllPoopsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493240A82B82E8CD00A9900D /* AllPoopsSheetView.swift */; };
 		493240AB2B82ECBA00A9900D /* PoopRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493240AA2B82ECBA00A9900D /* PoopRowView.swift */; };
+		493240B12B82F2DF00A9900D /* Poop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493240B02B82F2DF00A9900D /* Poop.swift */; };
+		493240B32B82F30100A9900D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493240B22B82F30100A9900D /* User.swift */; };
 		49B79A572B7F56AA001F3B79 /* AddPoopSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B79A562B7F56AA001F3B79 /* AddPoopSheetView.swift */; };
 		49C758FD2B8234740002EDEA /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C758FC2B8234740002EDEA /* LocationService.swift */; };
 		49EAEC972B7D78C6000E3C7D /* FecaliusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC962B7D78C6000E3C7D /* FecaliusApp.swift */; };
 		49EAEC992B7D78C6000E3C7D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC982B7D78C6000E3C7D /* HomeView.swift */; };
-		49EAEC9B2B7D78C6000E3C7D /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC9A2B7D78C6000E3C7D /* Store.swift */; };
 		49EAEC9D2B7D78C7000E3C7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49EAEC9C2B7D78C7000E3C7D /* Assets.xcassets */; };
 		49EAECA12B7D78C7000E3C7D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49EAECA02B7D78C7000E3C7D /* Preview Assets.xcassets */; };
 		49EAECA92B7D8773000E3C7D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAECA82B7D8773000E3C7D /* Extensions.swift */; };
@@ -26,12 +27,13 @@
 		493240A42B82DFCE00A9900D /* PoopDetailSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoopDetailSheetView.swift; sourceTree = "<group>"; };
 		493240A82B82E8CD00A9900D /* AllPoopsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPoopsSheetView.swift; sourceTree = "<group>"; };
 		493240AA2B82ECBA00A9900D /* PoopRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoopRowView.swift; sourceTree = "<group>"; };
+		493240B02B82F2DF00A9900D /* Poop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poop.swift; sourceTree = "<group>"; };
+		493240B22B82F30100A9900D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		49B79A562B7F56AA001F3B79 /* AddPoopSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPoopSheetView.swift; sourceTree = "<group>"; };
 		49C758FC2B8234740002EDEA /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		49EAEC932B7D78C6000E3C7D /* Fecalius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fecalius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EAEC962B7D78C6000E3C7D /* FecaliusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FecaliusApp.swift; sourceTree = "<group>"; };
 		49EAEC982B7D78C6000E3C7D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		49EAEC9A2B7D78C6000E3C7D /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		49EAEC9C2B7D78C7000E3C7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49EAEC9E2B7D78C7000E3C7D /* Fecalius.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fecalius.entitlements; sourceTree = "<group>"; };
 		49EAECA02B7D78C7000E3C7D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -53,6 +55,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		493240AC2B82F24800A9900D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				49EAEC982B7D78C6000E3C7D /* HomeView.swift */,
+				493240AD2B82F25F00A9900D /* Sheets */,
+				493240AE2B82F28900A9900D /* Views */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		493240AD2B82F25F00A9900D /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				49EAECAA2B7D890C000E3C7D /* HomeSheetView.swift */,
+				49B79A562B7F56AA001F3B79 /* AddPoopSheetView.swift */,
+				493240A42B82DFCE00A9900D /* PoopDetailSheetView.swift */,
+				493240A82B82E8CD00A9900D /* AllPoopsSheetView.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		493240AE2B82F28900A9900D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				493240AA2B82ECBA00A9900D /* PoopRowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		493240AF2B82F2C200A9900D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				493240B02B82F2DF00A9900D /* Poop.swift */,
+				493240B22B82F30100A9900D /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		49EAEC8A2B7D78C6000E3C7D = {
 			isa = PBXGroup;
 			children = (
@@ -74,19 +114,14 @@
 			isa = PBXGroup;
 			children = (
 				49EAEC962B7D78C6000E3C7D /* FecaliusApp.swift */,
-				49EAEC982B7D78C6000E3C7D /* HomeView.swift */,
-				49EAECAA2B7D890C000E3C7D /* HomeSheetView.swift */,
-				49B79A562B7F56AA001F3B79 /* AddPoopSheetView.swift */,
-				493240A42B82DFCE00A9900D /* PoopDetailSheetView.swift */,
 				49EAECA82B7D8773000E3C7D /* Extensions.swift */,
-				49EAEC9A2B7D78C6000E3C7D /* Store.swift */,
 				49C758FC2B8234740002EDEA /* LocationService.swift */,
+				493240AC2B82F24800A9900D /* UI */,
+				493240AF2B82F2C200A9900D /* Models */,
 				49EAEC9C2B7D78C7000E3C7D /* Assets.xcassets */,
 				49EAEC9E2B7D78C7000E3C7D /* Fecalius.entitlements */,
 				49EAECA22B7D78C7000E3C7D /* Info.plist */,
 				49EAEC9F2B7D78C7000E3C7D /* Preview Content */,
-				493240A82B82E8CD00A9900D /* AllPoopsSheetView.swift */,
-				493240AA2B82ECBA00A9900D /* PoopRowView.swift */,
 			);
 			path = Fecalius;
 			sourceTree = "<group>";
@@ -180,10 +215,11 @@
 				49C758FD2B8234740002EDEA /* LocationService.swift in Sources */,
 				49B79A572B7F56AA001F3B79 /* AddPoopSheetView.swift in Sources */,
 				49EAEC992B7D78C6000E3C7D /* HomeView.swift in Sources */,
+				493240B12B82F2DF00A9900D /* Poop.swift in Sources */,
 				493240A52B82DFCE00A9900D /* PoopDetailSheetView.swift in Sources */,
 				493240A92B82E8CE00A9900D /* AllPoopsSheetView.swift in Sources */,
-				49EAEC9B2B7D78C6000E3C7D /* Store.swift in Sources */,
 				49EAEC972B7D78C6000E3C7D /* FecaliusApp.swift in Sources */,
+				493240B32B82F30100A9900D /* User.swift in Sources */,
 				49EAECAB2B7D890C000E3C7D /* HomeSheetView.swift in Sources */,
 				49EAECA92B7D8773000E3C7D /* Extensions.swift in Sources */,
 				493240AB2B82ECBA00A9900D /* PoopRowView.swift in Sources */,

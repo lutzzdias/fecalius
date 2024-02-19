@@ -1,8 +1,8 @@
 //
-//  Item.swift
+//  Poop.swift
 //  Fecalius
 //
-//  Created by Thiago Lütz Dias on 14/02/24.
+//  Created by Thiago Lütz Dias on 19/02/24.
 //
 
 import Foundation
@@ -54,23 +54,4 @@ final class Poop {
         Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now, user: mockUser),
         Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now, user: mockUser),
     ]
-}
-
-@Model
-final class User {
-    var username: String
-    var name: String?
-    var bio: String?
-    var pic: Data?
-    
-    @Relationship(deleteRule: .cascade, inverse: \Poop.user)
-    var poops: [Poop]
-    
-    init(username: String, name: String? = nil, bio: String? = nil, pic: Data? = nil, poops: [Poop] = []) {
-        self.name = name
-        self.username = username
-        self.bio = bio
-        self.pic = pic
-        self.poops = poops
-    }
 }
