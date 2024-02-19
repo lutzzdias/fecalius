@@ -49,7 +49,7 @@ final class Poop {
     
     static private let mockUser = User(username: "lutzzdias")
     static let mock = [
-        Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now, user: mockUser),
+        Poop(latitude: 1, longitude: 1, location: "ASDF", timestamp: Date.now, user: mockUser),
         Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now, user: mockUser),
         Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now, user: mockUser),
         Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now, user: mockUser),

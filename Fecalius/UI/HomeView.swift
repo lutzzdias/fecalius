@@ -14,26 +14,21 @@ struct HomeView: View {
     
     @Query(Poop.all) private var poops: [Poop]
     
-    @State var showingSheet = true
-    @State var selectedPoop: Poop?
     @State var position: MapCameraPosition = .userLocation(fallback: .automatic)
     
     let locationService = LocationService.shared
     
     // TODO: Handle position not shared
     var body: some View {
-        MapReader { reader in
+//        MapReader { reader in
             Map(position: $position) {
                 ForEach(poops) { poop in
                     let coord = CLLocationCoordinate2D(latitude: poop.latitude, longitude: poop.longitude)
-                    Annotation(poop.location, coordinate: coord) {
+                    
+                    Annotation("", coordinate: coord) {
                         Image(systemName: "toilet.circle")
                             .resizable()
                             .frame(width: 40, height: 40)
-                            .onTapGesture {
-                                // TODO: Handle sheet manipulation
-                                selectedPoop = poop
-                            }
                     }
                     
                 }
@@ -47,7 +42,7 @@ struct HomeView: View {
                 MapScaleView(anchorEdge: .leading)
                     .mapControlVisibility(.automatic)
             }
-            .sheet(isPresented: $showingSheet) {
+            .sheet(isPresented: .constant(true)) {
                 HomeSheetView()
                     .presentationDetents([.tenth, .third, .full])
                     .presentationBackgroundInteraction(.enabled(upThrough: .third))
@@ -63,7 +58,7 @@ struct HomeView: View {
 //                // TODO: Create new poop (?)
 //                print(tapCoord.debugDescription)
 //            }
-        }
+//        }
     }
 }
 

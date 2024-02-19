@@ -12,10 +12,6 @@ struct HomeSheetView: View {
     @Environment(\.modelContext) private var context
     @Query(Poop.all) private var poops: [Poop]
     
-    private var currMonth: [Poop] {
-        poops.filter( {Calendar.current.isDate(Date.now, equalTo: $0.timestamp, toGranularity: .month)})
-    }
-    
     @State var showingAddPoopSheet = false
     @State var showingAllPoopsSheet = false
     
