@@ -15,6 +15,7 @@ struct HomeView: View {
     @Query(Poop.all) private var poops: [Poop]
     
     @State var showingSheet = true
+    @State var selectedPoop: Poop?
     @State var position: MapCameraPosition = .userLocation(fallback: .automatic)
     
     let locationService = LocationService.shared
@@ -25,7 +26,15 @@ struct HomeView: View {
             Map(position: $position) {
                 ForEach(poops) { poop in
                     let coord = CLLocationCoordinate2D(latitude: poop.latitude, longitude: poop.longitude)
-                    Marker(poop.location, systemImage: "mappin", coordinate: coord)
+                    Annotation(poop.location, coordinate: coord) {
+                        Image(systemName: "toilet.circle")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .onTapGesture {
+                                // TODO: Handle sheet manipulation
+                                selectedPoop = poop
+                            }
+                    }
                     
                 }
             }
@@ -38,11 +47,6 @@ struct HomeView: View {
                 MapScaleView(anchorEdge: .leading)
                     .mapControlVisibility(.automatic)
             }
-            .onTapGesture { screenCoord in
-                let tapCoord = reader.convert(screenCoord, from: .local)
-                // TODO: Create new poop (?)
-                print(tapCoord)
-            }
             .sheet(isPresented: $showingSheet) {
                 HomeSheetView()
                     .presentationDetents([.tenth, .third, .full])
@@ -54,6 +58,11 @@ struct HomeView: View {
                 try? await locationService.requestUserLocation()
                 try? await locationService.startLocationUpdates()
             }
+//            .onTapGesture { screenCoord in
+//                let tapCoord = reader.convert(screenCoord, from: .local)
+//                // TODO: Create new poop (?)
+//                print(tapCoord.debugDescription)
+//            }
         }
     }
 }
