@@ -11,6 +11,9 @@ import MapKit
 
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
+    
+    @Query(Poop.all) private var poops: [Poop]
+    
     @State var showingSheet = true
     @State var position: MapCameraPosition = .userLocation(fallback: .automatic)
     
@@ -18,7 +21,14 @@ struct HomeView: View {
     
     // TODO: Handle position not shared
     var body: some View {
-        Map(position: $position)
+        MapReader { reader in
+            Map(position: $position) {
+                ForEach(poops) { poop in
+                    let coord = CLLocationCoordinate2D(latitude: poop.latitude, longitude: poop.longitude)
+                    Marker(poop.location, systemImage: "mappin", coordinate: coord)
+                    
+                }
+            }
             .mapStyle(.standard(elevation: .realistic))
             .mapControlVisibility(.automatic)
             .mapControls {
@@ -27,6 +37,11 @@ struct HomeView: View {
                 MapCompass()
                 MapScaleView(anchorEdge: .leading)
                     .mapControlVisibility(.automatic)
+            }
+            .onTapGesture { screenCoord in
+                let tapCoord = reader.convert(screenCoord, from: .local)
+                // TODO: Create new poop (?)
+                print(tapCoord)
             }
             .sheet(isPresented: $showingSheet) {
                 HomeSheetView()
@@ -39,6 +54,7 @@ struct HomeView: View {
                 try? await locationService.requestUserLocation()
                 try? await locationService.startLocationUpdates()
             }
+        }
     }
 }
 
