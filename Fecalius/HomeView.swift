@@ -14,8 +14,7 @@ struct HomeView: View {
     @State var showingSheet = true
     @State var position: MapCameraPosition = .userLocation(fallback: .automatic)
     
-    @Bindable
-    var locationService = LocationService()
+    let locationService = LocationService.shared
     
     // TODO: Handle position not shared
     var body: some View {
@@ -36,8 +35,9 @@ struct HomeView: View {
                     .interactiveDismissDisabled()
                     .presentationBackground(.thickMaterial)
             }
-            .onAppear {
-                locationService.requestLocation()
+            .task {
+                try? await locationService.requestUserLocation()
+                try? await locationService.startLocationUpdates()
             }
     }
 }

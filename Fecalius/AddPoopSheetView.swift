@@ -15,6 +15,8 @@ struct AddPoopSheetView: View {
     @State var timestamp: Date = Date.now
     @State var rating: Int = 0
     
+    let locationService = LocationService.shared
+    
     var body: some View {
         Form {
             // Add Location component
@@ -53,16 +55,24 @@ struct AddPoopSheetView: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save") {
-                    // TODO: latitude, longitude and user
+                    guard let coords = locationService.location?.coordinate else {
+                        print("coordinates not available")
+                        return
+                    }
+                    
                     let poop = Poop(
-                        latitude: 0,
-                        longitude: 0,
+                        latitude: coords.latitude,
+                        longitude: coords.longitude,
                         location: location,
                         observations: observations,
                         rating: rating,
                         timestamp: timestamp,
                         user: User(username: "lutzzdias")
                     )
+                    
+                    print(poop.latitude)
+                    print(poop.longitude)
+                    
                     context.insert(poop)
                     dismiss()
                 }

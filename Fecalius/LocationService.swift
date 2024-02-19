@@ -6,40 +6,27 @@
 //
 
 import MapKit
+import Observation
 
 @Observable
-class LocationService: NSObject, CLLocationManagerDelegate {
+class LocationService {
     
-    private var locationManager: CLLocationManager?
-    var isLocationDisabled = true
+    static let shared = LocationService()
     
-    func requestLocation() {
-        locationManager = CLLocationManager()
-        locationManager!.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager!.delegate = self
+    private let locationManager = CLLocationManager()
+    
+    var location: CLLocation? = nil
+    
+    func requestUserLocation() async throws {
+        locationManager.requestWhenInUseAuthorization()
     }
     
-    private func checkLocationAuthorization() {
-        guard let locationManager = locationManager else { return }
-        
-        switch locationManager.authorizationStatus {
+    func startLocationUpdates() async throws {
+        for try await locationUpdate in CLLocationUpdate.liveUpdates() {
+            guard let location = locationUpdate.location else { return }
             
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-            
-        case .restricted, .denied:
-            isLocationDisabled = true
-            
-        case .authorizedAlways, .authorizedWhenInUse:
-            isLocationDisabled = false
-            
-        @unknown default:
-            isLocationDisabled = true
+            self.location = location
         }
-    }
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationAuthorization()
     }
 }
 
