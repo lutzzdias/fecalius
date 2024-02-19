@@ -64,7 +64,7 @@ struct HomeSheetView: View {
                                     }
                                 }
                                 
-                                Text(Date.now.formatted(date: .abbreviated, time: .shortened))
+                                Text(poop.timestamp.formatted(date: .abbreviated, time: .shortened))
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
