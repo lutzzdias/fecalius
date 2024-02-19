@@ -27,7 +27,7 @@ struct PoopRowView: View {
                     
                     HStack {
                         ForEach(0..<5) { number in
-                            Image(systemName: number > (poop.rating ?? 0) ? "star" : "star.fill")
+                            Image(systemName: number >= (poop.rating ?? 0) ? "star" : "star.fill")
                                 .resizable()
                                 .frame(width: 16, height: 16)
                                 .foregroundStyle(Color.yellow)
