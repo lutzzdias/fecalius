@@ -37,31 +37,26 @@ struct HomeSheetView: View {
             
             List {
                 Section {
-                    ForEach(poops.prefix(3)) { poop in
-                        PoopRowView(poop: poop)
-                    }
-                } header: {
-                    HStack {
-                        Text("Recents")
-                            .font(.body)
-                            .fontWeight(.semibold)
-                            .textCase(nil)
-                            .presentationBackground(.ultraThickMaterial)
-                        
-                        Spacer()
-                        
+                    if(poops.count > 0) {
+                        ForEach(poops.prefix(3)) { poop in
+                            PoopRowView(poop: poop)
+                        }
+                    } else {
                         Button {
-                            showingAllPoopsSheet.toggle()
-                            print("more")
+                            showingAddPoopSheet.toggle()
                         } label: {
-                            Text("More")
-                                .font(.body)
-                                .textCase(nil)
-                                .foregroundStyle(.link)
+                            HStack {
+                                Image(systemName: "plus")
+                                Text("Add new poop")
+                            }
                         }
                     }
-                    .listRowInsets(EdgeInsets())
-                    .padding(.bottom, 8)
+                } header: {
+                    poops.count > 3 ?
+                    SectionHeader(title: "Recents", actionTitle: "More") {
+                        showingAllPoopsSheet.toggle()
+                    }
+                    : SectionHeader(title: "Recents")
                 }
             }
             .listStyle(.insetGrouped)
@@ -79,6 +74,31 @@ struct HomeSheetView: View {
                 AllPoopsSheetView()
             }
         }
+    }
+    
+    @ViewBuilder
+    func SectionHeader(title: String, actionTitle: String? = nil, actionCallback: (() -> Void)? = nil) -> some View {
+        HStack {
+            Text(title)
+                .font(.body)
+                .fontWeight(.semibold)
+                .textCase(nil)
+                .presentationBackground(.ultraThickMaterial)
+            
+            Spacer()
+            
+            if let actionTitle, (actionCallback != nil)  {
+                Button(action: actionCallback!, label: {
+                    Text(actionTitle)
+                        .font(.body)
+                        .textCase(nil)
+                        .foregroundStyle(.link)
+                })
+            }
+                
+        }
+        .listRowInsets(EdgeInsets())
+        .padding(.bottom, 8)
     }
 }
 

@@ -16,29 +16,11 @@ struct AllPoopsSheetView: View {
     
     var body: some View {
         List {
-            if (!classified.sameDay.isEmpty) {
-                Section("Today") {
-                    ForEach(classified.sameDay) { poop in
-                        PoopRowView(poop: poop)
-                    }
-                }
-            }
+            SameDaySection()
             
-            if (!classified.sameMonth.isEmpty) {
-                Section("This Month") {
-                    ForEach(classified.sameMonth) { poop in
-                        PoopRowView(poop: poop)
-                    }
-                }
-            }
+            SameMonthSection()
             
-            if (!classified.older.isEmpty) {
-                Section("Older") {
-                    ForEach(classified.older) { poop in
-                        PoopRowView(poop: poop)
-                    }
-                }
-            }
+            OlderSection()
         }
         .navigationTitle("All")
         .navigationBarTitleDisplayMode(.large)
@@ -50,6 +32,42 @@ struct AllPoopsSheetView: View {
             }
         }
     }
+    
+    @ViewBuilder
+    func SameDaySection() -> some View {
+        if (!classified.sameDay.isEmpty) {
+            Section("Today") {
+                ForEach(classified.sameDay) { poop in
+                    PoopRowView(poop: poop)
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func SameMonthSection() -> some View {
+        if (!classified.sameMonth.isEmpty) {
+            Section("This Month") {
+                ForEach(classified.sameMonth) { poop in
+                    PoopRowView(poop: poop)
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func OlderSection() -> some View {
+        if (!classified.older.isEmpty) {
+            Section("Older") {
+                ForEach(classified.older) { poop in
+                    PoopRowView(poop: poop)
+                }
+            }
+        }
+    }
+
+    
+    
 }
 
 #Preview {

@@ -21,14 +21,11 @@ struct AddPoopSheetView: View {
         Form {
             // Add Location component
             
-            Section("Test") {
-                HStack {
-                    Text("Location")
-                    Spacer()
+            Section("Location") {
                     TextField("Home", text: $location)
-                        .frame(width: 200)
-                }
+            }
                 
+            Section {
                 DatePicker("Date", selection: $timestamp)
             }
             
@@ -37,7 +34,6 @@ struct AddPoopSheetView: View {
                     ForEach(1 ..< 5 + 1, id: \.self) { number in
                         Button {
                             rating = number
-                            print(rating)
                         } label: {
                             Image(systemName: number > rating ? "star" : "star.fill")
                                 .foregroundStyle(Color.yellow)
@@ -70,13 +66,11 @@ struct AddPoopSheetView: View {
                         user: User(username: "lutzzdias")
                     )
                     
-                    print(poop.latitude)
-                    print(poop.longitude)
-                    
                     context.insert(poop)
                     dismiss()
                 }
             }
+            
             ToolbarItem(placement: .cancellationAction) {
                 Button("Cancel") {
                     print("cancelled")

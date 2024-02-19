@@ -32,6 +32,8 @@ struct PoopDetailSheetView: View {
                 
             }
             .padding()
+            
+            PoopRowView(poop: poop)
         }
     }
 }
