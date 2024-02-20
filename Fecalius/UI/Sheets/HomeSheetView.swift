@@ -14,7 +14,7 @@ struct HomeSheetView: View {
     
     @State var showingAddPoopSheet = false
     @State var showingAllPoopsSheet = false
-    @Binding var selected: Poop?
+    @Binding var poop: Poop?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -68,8 +68,8 @@ struct HomeSheetView: View {
                 AllPoopsSheetView()
             }
         }
-        .sheet(item: $selected) { item in
-            PoopDetailSheetView(poop: item)
+        .sheet(item: $poop) { poop in
+            PoopDetailSheetView(poop: poop)
                 .presentationDetents([.tenth, .third, .full], selection: .constant(.third))
                 .presentationBackgroundInteraction(.enabled(upThrough: .third))
                 .interactiveDismissDisabled()

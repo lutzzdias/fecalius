@@ -47,11 +47,8 @@ struct MapView: View {
             MapScaleView(anchorEdge: .leading)
                 .mapControlVisibility(.automatic)
         }
-        .onChange(of: selected) {
-            print(selected?.location)
-        }
         .sheet(isPresented: .constant(true)) {
-            HomeSheetView(selected: $selected)
+            HomeSheetView(poop: $selected)
                 .presentationDetents([.tenth, .third, .full], selection: .constant(.third))
                 .presentationBackgroundInteraction(.enabled(upThrough: .third))
                 .interactiveDismissDisabled()
