@@ -14,13 +14,8 @@ struct PoopDetailSheetView: View {
     let poop: Poop
     
     var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                Text("Fecalius")
-                    .font(.title)
-                    .fontWeight(.bold)
-                
-                Spacer()
+        VStack(alignment: .leading, spacing: 0) {
+            SheetHeader(title: poop.location, subtitle: poop.date) {
                 Button {
                     dismiss()
                 } label: {
@@ -28,12 +23,26 @@ struct PoopDetailSheetView: View {
                         .resizable()
                         .padding(4)
                         .frame(width: 30, height: 30)
+                        .foregroundStyle(.gray)
+                }
+            }
+            
+            Form {
+                Section("Rating") {
+                    RatingView(rating: poop.rating)
                 }
                 
+                if let observations = poop.observations {
+                    if (!observations.isEmpty) {
+                        Section("Observations") {
+                            Text(observations)
+                        }
+                    }
+                }
             }
-            .padding()
+            .scrollContentBackground(.hidden)
             
-            PoopRowView(poop: poop)
+            Spacer()
         }
     }
 }

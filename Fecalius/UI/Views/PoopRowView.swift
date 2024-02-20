@@ -25,17 +25,10 @@ struct PoopRowView: View {
                     
                     Spacer()
                     
-                    HStack {
-                        ForEach(0..<5) { number in
-                            Image(systemName: number >= (poop.rating ?? 0) ? "star" : "star.fill")
-                                .resizable()
-                                .frame(width: 16, height: 16)
-                                .foregroundStyle(Color.yellow)
-                        }
-                    }
+                    RatingView(rating: poop.rating)
                 }
                 
-                Text(poop.timestamp.formatted(date: .abbreviated, time: .shortened))
+                Text(poop.date)
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }

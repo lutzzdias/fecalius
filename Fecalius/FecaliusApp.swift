@@ -27,7 +27,7 @@ struct FecaliusApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            MapView()
         }
         .modelContainer(sharedModelContainer)
     }

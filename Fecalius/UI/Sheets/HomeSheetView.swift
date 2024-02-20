@@ -14,15 +14,11 @@ struct HomeSheetView: View {
     
     @State var showingAddPoopSheet = false
     @State var showingAllPoopsSheet = false
+    @Binding var selected: Poop?
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Text("Fecalius")
-                    .font(.title)
-                    .fontWeight(.bold)
-                
-                Spacer()
+            SheetHeader(title: "Fecalius", subtitle: nil) {
                 Button {
                     showingAddPoopSheet.toggle()
                 } label: {
@@ -31,9 +27,7 @@ struct HomeSheetView: View {
                         .padding(4)
                         .frame(width: 30, height: 30)
                 }
-                
             }
-            .padding()
             
             List {
                 Section {
@@ -74,6 +68,13 @@ struct HomeSheetView: View {
                 AllPoopsSheetView()
             }
         }
+        .sheet(item: $selected) { item in
+            PoopDetailSheetView(poop: item)
+                .presentationDetents([.tenth, .third, .full], selection: .constant(.third))
+                .presentationBackgroundInteraction(.enabled(upThrough: .third))
+                .interactiveDismissDisabled()
+                .presentationBackground(.ultraThickMaterial)
+        }
     }
     
     @ViewBuilder
@@ -95,7 +96,7 @@ struct HomeSheetView: View {
                         .foregroundStyle(.link)
                 })
             }
-                
+            
         }
         .listRowInsets(EdgeInsets())
         .padding(.bottom, 8)
@@ -103,6 +104,6 @@ struct HomeSheetView: View {
 }
 
 #Preview {
-    HomeView()
+    MapView()
         .modelContainer(for: [User.self, Poop.self], inMemory: true)
 }

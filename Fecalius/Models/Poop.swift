@@ -14,12 +14,12 @@ final class Poop {
     var longitude: Double
     var location: String
     var observations: String?
-    var rating: Int?
+    var rating: Int
     var timestamp: Date
     
     var user: User
     
-    init(latitude: Double, longitude: Double, location: String, observations: String? = nil, rating: Int? = nil, timestamp: Date, user: User) {
+    init(latitude: Double, longitude: Double, location: String, observations: String? = nil, rating: Int = 0, timestamp: Date, user: User) {
         self.latitude = latitude
         self.longitude = longitude
         self.location = location
@@ -27,6 +27,10 @@ final class Poop {
         self.rating = rating
         self.timestamp = timestamp
         self.user = user
+    }
+    
+    var date: String {
+        self.timestamp.formatted(date: .abbreviated, time: .shortened)
     }
     
     static var all = FetchDescriptor<Poop>(sortBy: [SortDescriptor(\.timestamp, order: .reverse)])
