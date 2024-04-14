@@ -10,7 +10,8 @@ import SwiftData
 
 struct HomeSheetView: View {
     @Environment(\.modelContext) private var context
-    @Query(Poop.all) private var poops: [Poop]
+//    @Query(Poop.all) private var poops: [Poop]
+    let poops = Poop.mock
     
     @State var showingAddPoopSheet = false
     @State var showingAllPoopsSheet = false
@@ -31,37 +32,14 @@ struct HomeSheetView: View {
             }
             
             List {
-                Section {
-                    if(poops.count > 0) {
-                        ForEach(poops.prefix(3)) { p in
-                            Button {
-                                withAnimation {
-                                    poop = p
-                                }
-                                
-                            } label: {
-                                PoopRowView(poop: p)
-                            }
-                        }
-                    } else {
-                        Button {
-                            showingAddPoopSheet.toggle()
-                        } label: {
-                            HStack {
-                                Image(systemName: "plus")
-                                Text("Add new poop")
-                            }
-                        }
-                    }
-                } header: {
+                VerticalSection(header:
                     poops.count > 3 ?
-                    SectionHeader(title: "Recents", actionTitle: "More") {
-                        showingAllPoopsSheet.toggle()
-                    }
-                    : SectionHeader(title: "Recents")
-                }
+                    SectionHeader(title: "Recents", actionTitle: "More") { showingAllPoopsSheet.toggle() }
+                    : SectionHeader(title: "Recents")     
+                )
+                
+                HorizontalSection(header: SectionHeader(title: "Most common locations"))
             }
-//            .listStyle(.insetGrouped)
             .scrollContentBackground(.hidden)
             
             Spacer()
@@ -87,32 +65,53 @@ struct HomeSheetView: View {
     }
     
     @ViewBuilder
-    func SectionHeader(title: String, actionTitle: String? = nil, actionCallback: (() -> Void)? = nil) -> some View {
-        HStack {
-            Text(title)
-                .font(.body)
-                .fontWeight(.semibold)
-                .textCase(nil)
-                .presentationBackground(.ultraThickMaterial)
-            
-            Spacer()
-            
-            if let actionTitle, (actionCallback != nil)  {
-                Button(action: actionCallback!, label: {
-                    Text(actionTitle)
-                        .font(.body)
-                        .textCase(nil)
-                        .foregroundStyle(.link)
-                })
+    func VerticalSection(header: some View) -> some View {
+        // TODO: Align content with header (remove margin (?))
+        
+        Section {
+            if(poops.count > 0) {
+                ForEach(poops.prefix(3)) { p in
+                    Button {
+                        withAnimation {
+                            poop = p
+                        }
+                        
+                    } label: {
+                        PoopRowView(poop: p)
+                            .foregroundStyle(.black)
+                    }
+                }
+            } else {
+                Button {
+                    showingAddPoopSheet.toggle()
+                } label: {
+                    HStack {
+                        Image(systemName: "plus")
+                        Text("Add new poop")
+                    }
+                }
             }
-            
-        }
-        .listRowInsets(EdgeInsets())
-        .padding(.bottom, 8)
+        } header: { header }
+    }
+    
+    @ViewBuilder
+    func HorizontalSection(header: some View) -> some View {
+        // TODO: Align content with header (remove margin (?))
+        
+        Section {
+            ScrollView(.horizontal) {
+                HStack(alignment: .top, spacing: 24) {
+                    IconItemView(title: "Home", icon: "house.fill", details: "55 poops")
+                    IconItemView(title: "Home", icon: "house.fill", details: "55 poops")
+                    IconItemView(title: "Home", icon: "house.fill", details: "55 poops")
+                    IconItemView(title: "Add", icon: "plus")
+                }
+            }
+        } header: { header }
     }
 }
 
 #Preview {
-    MapView()
-        .modelContainer(for: [Poop.self], inMemory: true)
+    HomeSheetView(poop: .constant(nil))
+        .modelContainer(for: [Poop.self, Location.self], inMemory: true)
 }

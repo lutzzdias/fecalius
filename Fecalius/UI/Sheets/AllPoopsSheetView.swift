@@ -71,5 +71,5 @@ struct AllPoopsSheetView: View {
 
 #Preview {
     AllPoopsSheetView()
-        .modelContainer(for: [Poop.self], inMemory: true)
+        .modelContainer(for: [Poop.self, Location.self], inMemory: true)
 }
