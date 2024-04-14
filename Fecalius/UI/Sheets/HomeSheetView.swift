@@ -14,6 +14,7 @@ struct HomeSheetView: View {
     
     @State var showingAddPoopSheet = false
     @State var showingAllPoopsSheet = false
+    
     @Binding var poop: Poop?
     
     var body: some View {
@@ -32,8 +33,15 @@ struct HomeSheetView: View {
             List {
                 Section {
                     if(poops.count > 0) {
-                        ForEach(poops.prefix(3)) { poop in
-                            PoopRowView(poop: poop)
+                        ForEach(poops.prefix(3)) { p in
+                            Button {
+                                withAnimation {
+                                    poop = p
+                                }
+                                
+                            } label: {
+                                PoopRowView(poop: p)
+                            }
                         }
                     } else {
                         Button {
@@ -53,7 +61,7 @@ struct HomeSheetView: View {
                     : SectionHeader(title: "Recents")
                 }
             }
-            .listStyle(.insetGrouped)
+//            .listStyle(.insetGrouped)
             .scrollContentBackground(.hidden)
             
             Spacer()
@@ -70,6 +78,7 @@ struct HomeSheetView: View {
         }
         .sheet(item: $poop) { poop in
             PoopDetailSheetView(poop: poop)
+                .id(poop.id)
                 .presentationDetents([.tenth, .third, .full], selection: .constant(.third))
                 .presentationBackgroundInteraction(.enabled(upThrough: .third))
                 .interactiveDismissDisabled()
@@ -105,5 +114,5 @@ struct HomeSheetView: View {
 
 #Preview {
     MapView()
-        .modelContainer(for: [User.self, Poop.self], inMemory: true)
+        .modelContainer(for: [Poop.self], inMemory: true)
 }

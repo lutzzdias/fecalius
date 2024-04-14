@@ -23,7 +23,6 @@ struct AllPoopsSheetView: View {
             OlderSection()
         }
         .navigationTitle("All")
-        .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Done") {
@@ -72,5 +71,5 @@ struct AllPoopsSheetView: View {
 
 #Preview {
     AllPoopsSheetView()
-        .modelContainer(for: [User.self, Poop.self], inMemory: true)
+        .modelContainer(for: [Poop.self], inMemory: true)
 }

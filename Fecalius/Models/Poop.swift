@@ -17,16 +17,13 @@ final class Poop {
     var rating: Int
     var timestamp: Date
     
-    var user: User
-    
-    init(latitude: Double, longitude: Double, location: String, observations: String? = nil, rating: Int = 0, timestamp: Date, user: User) {
+    init(latitude: Double, longitude: Double, location: String, observations: String? = nil, rating: Int = 0, timestamp: Date) {
         self.latitude = latitude
         self.longitude = longitude
         self.location = location
         self.observations = observations
         self.rating = rating
         self.timestamp = timestamp
-        self.user = user
     }
     
     var date: String {
@@ -51,11 +48,10 @@ final class Poop {
         return classified
     }
     
-    static private let mockUser = User(username: "lutzzdias")
     static let mock = [
-        Poop(latitude: 1, longitude: 1, location: "ASDF", timestamp: Date.now, user: mockUser),
-        Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now, user: mockUser),
-        Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now, user: mockUser),
-        Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now, user: mockUser),
+        Poop(latitude: 1, longitude: 1, location: "ASDF", timestamp: Date.now),
+        Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now),
+        Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now),
+        Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now),
     ]
 }

@@ -21,16 +21,10 @@ struct MapView: View {
     
     // TODO: Handle position not shared
     var body: some View {
-        //        MapReader { reader in
         Map(position: $position, selection: $selected) {
             ForEach(poops) { poop in
                 let coord = CLLocationCoordinate2D(latitude: poop.latitude, longitude: poop.longitude)
-                
-                //                Annotation("", coordinate: coord) {
-                //                    Image(systemName: "toilet.circle")
-                //                        .resizable()
-                //                        .frame(width: 40, height: 40)
-                //                }.tag(poop.id)
+
                 Marker(coordinate: coord) {
                     Image(systemName: "toilet.circle")
                         .resizable()
@@ -49,6 +43,7 @@ struct MapView: View {
         }
         .sheet(isPresented: .constant(true)) {
             HomeSheetView(poop: $selected)
+                .id("home")
                 .presentationDetents([.tenth, .third, .full], selection: .constant(.third))
                 .presentationBackgroundInteraction(.enabled(upThrough: .third))
                 .interactiveDismissDisabled()
@@ -58,16 +53,10 @@ struct MapView: View {
             try? await locationService.requestUserLocation()
             try? await locationService.startLocationUpdates()
         }
-        //            .onTapGesture { screenCoord in
-        //                let tapCoord = reader.convert(screenCoord, from: .local)
-        //                // TODO: Create new poop (?)
-        //                print(tapCoord.debugDescription)
-        //            }
-        //        }
     }
 }
 
 #Preview {
     MapView()
-        .modelContainer(for: [User.self, Poop.self], inMemory: true)
+        .modelContainer(for: [Poop.self], inMemory: true)
 }

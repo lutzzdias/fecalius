@@ -52,6 +52,7 @@ struct AddPoopSheetView: View {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save") {
                     guard let coords = locationService.location?.coordinate else {
+                        // TODO: Handle coords unavailable
                         print("coordinates not available")
                         return
                     }
@@ -62,8 +63,7 @@ struct AddPoopSheetView: View {
                         location: location,
                         observations: observations,
                         rating: rating,
-                        timestamp: timestamp,
-                        user: User(username: "lutzzdias")
+                        timestamp: timestamp
                     )
                     
                     context.insert(poop)
