@@ -44,24 +44,24 @@ struct HomeSheetView: View {
             
             Spacer()
         }
-        .sheet(isPresented: $showingAddPoopSheet) {
-            NavigationStack {
-                AddPoopSheetView()
-            }
-        }
-        .sheet(isPresented: $showingAllPoopsSheet) {
-            NavigationStack {
-                AllPoopsSheetView()
-            }
-        }
-        .sheet(item: $poop) { poop in
-            PoopDetailSheetView(poop: poop)
-                .id(poop.id)
-                .presentationDetents([.tenth, .third, .full], selection: .constant(.third))
-                .presentationBackgroundInteraction(.enabled(upThrough: .third))
-                .interactiveDismissDisabled()
-                .presentationBackground(.ultraThickMaterial)
-        }
+//        .sheet(isPresented: $showingAddPoopSheet) {
+//            NavigationStack {
+//                AddPoopSheetView()
+//            }
+//        }
+//        .sheet(isPresented: $showingAllPoopsSheet) {
+//            NavigationStack {
+//                AllPoopsSheetView()
+//            }
+//        }
+//        .sheet(item: $poop) { poop in
+//            PoopDetailSheetView(poop: poop)
+//                .id(poop.id)
+//                .presentationDetents([.tenth, .third, .full], selection: .constant(.third))
+//                .presentationBackgroundInteraction(.enabled(upThrough: .third))
+//                .interactiveDismissDisabled()
+//                .presentationBackground(.ultraThickMaterial)
+//        }
     }
     
     @ViewBuilder
