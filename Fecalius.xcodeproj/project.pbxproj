@@ -15,7 +15,6 @@
 		493240B12B82F2DF00A9900D /* Poop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493240B02B82F2DF00A9900D /* Poop.swift */; };
 		4991A7A12BCC7AEB0004F5E9 /* IconItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A7A02BCC7AEB0004F5E9 /* IconItemView.swift */; };
 		4991A7A52BCC80430004F5E9 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A7A42BCC80430004F5E9 /* SectionHeader.swift */; };
-		4991A7A92BCC82DD0004F5E9 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991A7A82BCC82DD0004F5E9 /* Location.swift */; };
 		49B79A572B7F56AA001F3B79 /* AddPoopSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B79A562B7F56AA001F3B79 /* AddPoopSheetView.swift */; };
 		49C758FD2B8234740002EDEA /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C758FC2B8234740002EDEA /* LocationService.swift */; };
 		49EAEC972B7D78C6000E3C7D /* FecaliusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAEC962B7D78C6000E3C7D /* FecaliusApp.swift */; };
@@ -36,7 +35,6 @@
 		493240B02B82F2DF00A9900D /* Poop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poop.swift; sourceTree = "<group>"; };
 		4991A7A02BCC7AEB0004F5E9 /* IconItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconItemView.swift; sourceTree = "<group>"; };
 		4991A7A42BCC80430004F5E9 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
-		4991A7A82BCC82DD0004F5E9 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		49B79A562B7F56AA001F3B79 /* AddPoopSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPoopSheetView.swift; sourceTree = "<group>"; };
 		49C758FC2B8234740002EDEA /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		49EAEC932B7D78C6000E3C7D /* Fecalius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fecalius.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				493240B02B82F2DF00A9900D /* Poop.swift */,
-				4991A7A82BCC82DD0004F5E9 /* Location.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,7 +228,6 @@
 				493240B12B82F2DF00A9900D /* Poop.swift in Sources */,
 				493240A52B82DFCE00A9900D /* PoopDetailSheetView.swift in Sources */,
 				493240A92B82E8CE00A9900D /* AllPoopsSheetView.swift in Sources */,
-				4991A7A92BCC82DD0004F5E9 /* Location.swift in Sources */,
 				4991A7A12BCC7AEB0004F5E9 /* IconItemView.swift in Sources */,
 				49EAEC972B7D78C6000E3C7D /* FecaliusApp.swift in Sources */,
 				490DB9412B84192A005A3206 /* RatingView.swift in Sources */,

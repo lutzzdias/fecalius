@@ -113,5 +113,5 @@ struct HomeSheetView: View {
 
 #Preview {
     HomeSheetView(poop: .constant(nil))
-        .modelContainer(for: [Poop.self, Location.self], inMemory: true)
+        .modelContainer(for: [Poop.self], inMemory: true)
 }
