@@ -10,13 +10,11 @@ import SwiftData
 
 @main
 struct FecaliusApp: App {
-    var sharedModelContainer: ModelContainer = {
+    var container: ModelContainer = {
         let schema = Schema([Poop.self])
-        
-        let modelConfiguration = ModelConfiguration(schema: schema)
-
+        let config = ModelConfiguration(schema: schema)
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return try ModelContainer(for: schema, configurations: [config])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
@@ -26,6 +24,6 @@ struct FecaliusApp: App {
         WindowGroup {
             MapView()
         }
-        .modelContainer(sharedModelContainer)
+        .modelContainer(container)
     }
 }
