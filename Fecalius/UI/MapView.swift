@@ -19,7 +19,6 @@ struct MapView: View {
     
     let locationService = LocationService.shared
     
-    // TODO: Handle position not shared
     var body: some View {
         Map(position: $position, selection: $selected) {
             ForEach(poops) { poop in
@@ -50,7 +49,7 @@ struct MapView: View {
                 .presentationBackground(.thickMaterial)
         }
         .task {
-            try? await locationService.requestUserLocation()
+            locationService.requestUserLocation()
             try? await locationService.startLocationUpdates()
         }
     }

@@ -15,19 +15,19 @@ class LocationService {
     
     private let locationManager = CLLocationManager()
     
-    var location: CLLocation? = nil
+    var location: CLLocation?
     
-    func requestUserLocation() async throws {
+    // TODO: handle authorization denied
+    func requestUserLocation() {
         locationManager.requestWhenInUseAuthorization()
     }
     
     func startLocationUpdates() async throws {
-        for try await locationUpdate in CLLocationUpdate.liveUpdates() {
-            guard let location = locationUpdate.location else { return }
-            
-            self.location = location
+        for try await update in CLLocationUpdate.liveUpdates() {
+            if let loc = update.location {
+                self.location = loc
+            } else {
+            }
         }
     }
 }
-
-
