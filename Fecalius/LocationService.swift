@@ -27,6 +27,7 @@ class LocationService {
             if let loc = update.location {
                 self.location = loc
             } else {
+                // TODO: handle no location
             }
         }
     }

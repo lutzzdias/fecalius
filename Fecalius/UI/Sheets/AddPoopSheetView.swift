@@ -19,8 +19,6 @@ struct AddPoopSheetView: View {
     
     var body: some View {
         Form {
-            // Add Location component
-            
             Section("Location") {
                     TextField("Home", text: $location)
             }
@@ -52,7 +50,7 @@ struct AddPoopSheetView: View {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save") {
                     guard let coords = locationService.location?.coordinate else {
-                        // TODO: Handle coords unavailable
+                        // TODO: handle no coordinates
                         print("coordinates not available")
                         return
                     }

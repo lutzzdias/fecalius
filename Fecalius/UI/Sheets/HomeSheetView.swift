@@ -10,8 +10,7 @@ import SwiftData
 
 struct HomeSheetView: View {
     @Environment(\.modelContext) private var context
-//    @Query(Poop.all) private var poops: [Poop]
-    let poops = Poop.mock
+    @Query(Poop.all) private var poops: [Poop]
     
     @State var showingAddPoopSheet = false
     @State var showingAllPoopsSheet = false
@@ -37,37 +36,34 @@ struct HomeSheetView: View {
                     SectionHeader(title: "Recents", actionTitle: "More") { showingAllPoopsSheet.toggle() }
                     : SectionHeader(title: "Recents")     
                 )
-                
-                HorizontalSection(header: SectionHeader(title: "Most common locations"))
             }
             .scrollContentBackground(.hidden)
             
             Spacer()
         }
-//        .sheet(isPresented: $showingAddPoopSheet) {
-//            NavigationStack {
-//                AddPoopSheetView()
-//            }
-//        }
-//        .sheet(isPresented: $showingAllPoopsSheet) {
-//            NavigationStack {
-//                AllPoopsSheetView()
-//            }
-//        }
-//        .sheet(item: $poop) { poop in
-//            PoopDetailSheetView(poop: poop)
-//                .id(poop.id)
-//                .presentationDetents([.tenth, .third, .full], selection: .constant(.third))
-//                .presentationBackgroundInteraction(.enabled(upThrough: .third))
-//                .interactiveDismissDisabled()
-//                .presentationBackground(.ultraThickMaterial)
-//        }
+        .sheet(isPresented: $showingAddPoopSheet) {
+            NavigationStack {
+                AddPoopSheetView()
+            }
+        }
+        .sheet(isPresented: $showingAllPoopsSheet) {
+            NavigationStack {
+                AllPoopsSheetView()
+            }
+        }
+        .sheet(item: $poop) { poop in
+            PoopDetailSheetView(poop: poop)
+                .id(poop.id)
+                // TODO: selected detent should be the same as the homeSheetView in mapView
+                .presentationDetents([.tenth, .third, .full], selection: .constant(.third))
+                .presentationBackgroundInteraction(.enabled(upThrough: .third))
+                .interactiveDismissDisabled()
+                .presentationBackground(.ultraThickMaterial)
+        }
     }
     
     @ViewBuilder
     func VerticalSection(header: some View) -> some View {
-        // TODO: Align content with header (remove margin (?))
-        
         Section {
             if(poops.count > 0) {
                 ForEach(poops.prefix(3)) { p in
@@ -75,11 +71,9 @@ struct HomeSheetView: View {
                         withAnimation {
                             poop = p
                         }
-                        
                     } label: {
                         PoopRowView(poop: p)
-                            .foregroundStyle(.black)
-                    }
+                    }.buttonStyle(.plain)
                 }
             } else {
                 Button {
@@ -93,25 +87,9 @@ struct HomeSheetView: View {
             }
         } header: { header }
     }
-    
-    @ViewBuilder
-    func HorizontalSection(header: some View) -> some View {
-        // TODO: Align content with header (remove margin (?))
-        
-        Section {
-            ScrollView(.horizontal) {
-                HStack(alignment: .top, spacing: 24) {
-                    IconItemView(title: "Home", icon: "house.fill", details: "55 poops")
-                    IconItemView(title: "Home", icon: "house.fill", details: "55 poops")
-                    IconItemView(title: "Home", icon: "house.fill", details: "55 poops")
-                    IconItemView(title: "Add", icon: "plus")
-                }
-            }
-        } header: { header }
-    }
 }
 
 #Preview {
-    HomeSheetView(poop: .constant(nil))
+    MapView()
         .modelContainer(for: [Poop.self], inMemory: true)
 }

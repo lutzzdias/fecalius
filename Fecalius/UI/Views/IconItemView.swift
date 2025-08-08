@@ -27,7 +27,8 @@ struct IconItemView: View {
                     .resizable()
                     .frame(width: 32, height: 32)
                     .aspectRatio(contentMode: .fit)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
+                    .colorInvert()
             }
             
             VStack(spacing: 2) {
