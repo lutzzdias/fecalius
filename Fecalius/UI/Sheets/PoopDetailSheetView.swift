@@ -29,7 +29,7 @@ struct PoopDetailSheetView: View {
             
             Form {
                 Section("Rating") {
-                    RatingView(rating: poop.rating)
+                    RatingView(rating: .constant(poop.rating))
                 }
                 
                 if let observations = poop.observations {

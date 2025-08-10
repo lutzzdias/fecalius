@@ -13,7 +13,7 @@ struct AddPoopSheetView: View {
     @State var location: String = ""
     @State var observations: String = ""
     @State var timestamp: Date = Date.now
-    @State var rating: Int = 0
+    @State var rating: Double = 0
     
     let locationService = LocationService.shared
     
@@ -28,17 +28,8 @@ struct AddPoopSheetView: View {
             }
             
             Section("Rating") {
-                HStack {
-                    ForEach(1 ..< 5 + 1, id: \.self) { number in
-                        Button {
-                            rating = number
-                        } label: {
-                            Image(systemName: number > rating ? "star" : "star.fill")
-                                .foregroundStyle(Color.yellow)
-                        }
-                    }
-                }
-                .buttonStyle(.plain)
+                RatingView(rating: $rating)
+                    .buttonStyle(.plain)
             }
             
             Section("Observations") {

@@ -14,10 +14,10 @@ final class Poop {
     var longitude: Double
     var location: String
     var observations: String?
-    var rating: Int
+    var rating: Double
     var timestamp: Date
     
-    init(latitude: Double, longitude: Double, location: String, observations: String? = nil, rating: Int = 0, timestamp: Date) {
+    init(latitude: Double, longitude: Double, location: String, observations: String? = nil, rating: Double = 0, timestamp: Date) {
         self.latitude = latitude
         self.longitude = longitude
         self.location = location
@@ -40,11 +40,13 @@ final class Poop {
     
     static func classified(_ all: [Poop]) -> classifiedPoops {
         var classified = classifiedPoops(sameDay: [], sameMonth: [], older: [])
+        
         for poop in all {
             if (Calendar.current.isDate(poop.timestamp, inSameDayAs: Date.now)) { classified.sameDay.append(poop) }
             else if (Calendar.current.isDate(poop.timestamp, equalTo: Date.now, toGranularity: .month)) { classified.sameMonth.append(poop)}
             else { classified.older.append(poop) }
         }
+        
         return classified
     }
     

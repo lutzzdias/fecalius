@@ -25,7 +25,7 @@ struct PoopRowView: View {
                     
                     Spacer()
                     
-                    RatingView(rating: poop.rating)
+                    RatingView(rating: .constant(poop.rating))
                 }
                 
                 Text(poop.date)
