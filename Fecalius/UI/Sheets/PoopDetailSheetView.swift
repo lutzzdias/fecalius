@@ -15,7 +15,7 @@ struct PoopDetailSheetView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            SheetHeader(title: poop.location, subtitle: poop.date) {
+            SheetHeader(title: poop.location.name, subtitle: poop.date) {
                 Button {
                     dismiss()
                 } label: {

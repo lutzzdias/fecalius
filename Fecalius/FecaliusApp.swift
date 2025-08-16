@@ -11,7 +11,7 @@ import SwiftData
 @main
 struct FecaliusApp: App {
     var container: ModelContainer = {
-        let schema = Schema([Poop.self])
+        let schema = Schema([Poop.self, Location.self])
         let config = ModelConfiguration(schema: schema)
         do {
             return try ModelContainer(for: schema, configurations: [config])

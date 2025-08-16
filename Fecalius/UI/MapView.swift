@@ -22,7 +22,7 @@ struct MapView: View {
     var body: some View {
         Map(position: $position, selection: $selected) {
             ForEach(poops) { poop in
-                let coord = CLLocationCoordinate2D(latitude: poop.latitude, longitude: poop.longitude)
+                let coord = CLLocationCoordinate2D(latitude: poop.location.latitude, longitude: poop.location.longitude)
 
                 Marker(coordinate: coord) {
                     Image(systemName: "toilet.circle")

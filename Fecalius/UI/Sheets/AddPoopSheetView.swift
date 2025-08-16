@@ -10,7 +10,7 @@ import SwiftUI
 struct AddPoopSheetView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
-    @State var location: String = ""
+    @State var locationName: String = ""
     @State var observations: String = ""
     @State var timestamp: Date = Date.now
     @State var rating: Double = 0
@@ -20,7 +20,7 @@ struct AddPoopSheetView: View {
     var body: some View {
         Form {
             Section("Location") {
-                    TextField("Home", text: $location)
+                    TextField("Home", text: $locationName)
             }
                 
             Section {
@@ -46,17 +46,21 @@ struct AddPoopSheetView: View {
                         return
                     }
                     
-                    let poop = Poop(
-                        latitude: coords.latitude,
-                        longitude: coords.longitude,
-                        location: location,
-                        observations: observations,
-                        rating: rating,
-                        timestamp: timestamp
-                    )
-                    
-                    context.insert(poop)
-                    dismiss()
+                    do {
+                        let location = try Location.fetchOrCreate(name: locationName, coordinate: coords, context: context)
+                        
+                        let poop = Poop(
+                            location: location,
+                            observations: observations,
+                            rating: rating,
+                            timestamp: timestamp
+                        )
+                        
+                        context.insert(poop)
+                        dismiss()
+                    } catch {
+                        print("Failed to fetch or create location: \(error)")
+                    }
                 }
             }
             

@@ -10,16 +10,13 @@ import SwiftData
 
 @Model
 final class Poop {
-    var latitude: Double
-    var longitude: Double
-    var location: String
     var observations: String?
     var rating: Double
     var timestamp: Date
     
-    init(latitude: Double, longitude: Double, location: String, observations: String? = nil, rating: Double = 0, timestamp: Date) {
-        self.latitude = latitude
-        self.longitude = longitude
+    @Relationship(inverse: \Location.poops) var location: Location
+    
+    init(location: Location, observations: String? = nil, rating: Double = 0, timestamp: Date) {
         self.location = location
         self.observations = observations
         self.rating = rating
@@ -51,9 +48,9 @@ final class Poop {
     }
     
     static let mock = [
-        Poop(latitude: 1, longitude: 1, location: "ASDF", timestamp: Date.now),
-        Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now),
-        Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now),
-        Poop(latitude: 1, longitude: 1, location: "Home", timestamp: Date.now),
+        Poop(location: Location(name: "Home", latitude: 1, longitude: 1), observations: "This is a good test poop", rating: 3.5, timestamp: Date.now),
+        Poop(location: Location(name: "Home", latitude: 1, longitude: 1), observations: "This is a bad test poop", rating: 0.5, timestamp: Date.now),
+        Poop(location: Location(name: "Home", latitude: 1, longitude: 1), observations: "This is a great test poop", rating: 5, timestamp: Date.now),
+        Poop(location: Location(name: "Home", latitude: 1, longitude: 1), observations: "This is an average test poop", rating: 2.5, timestamp: Date.now),
     ]
 }
