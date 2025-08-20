@@ -46,21 +46,20 @@ struct AddPoopSheetView: View {
                         return
                     }
                     
-                    do {
-                        let location = try Location.fetchOrCreate(name: locationName, coordinate: coords, context: context)
-                        
-                        let poop = Poop(
-                            location: location,
-                            observations: observations,
-                            rating: rating,
-                            timestamp: timestamp
-                        )
-                        
-                        context.insert(poop)
-                        dismiss()
-                    } catch {
-                        print("Failed to fetch or create location: \(error)")
+                    guard let location = try? Location.fetchOrCreate(name: locationName, coordinate: coords, context: context) else {
+                        print("⚠️ Could not create location")
+                        return
                     }
+                    
+                    let poop = Poop(
+                        location: location,
+                        observations: observations,
+                        rating: rating,
+                        timestamp: timestamp
+                    )
+                    
+                    context.insert(poop)
+                    dismiss()
                 }
             }
             
