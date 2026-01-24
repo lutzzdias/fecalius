@@ -20,7 +20,7 @@ struct PoopRowView: View {
             
             VStack(alignment: .leading) {
                 HStack {
-                    Text(poop.location.name)
+                    Text(poop.location)
                         .fontWeight(.semibold)
                     
                     Spacer()

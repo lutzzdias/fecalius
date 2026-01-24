@@ -39,8 +39,6 @@ struct HomeSheetView: View {
             }
             .scrollContentBackground(.hidden)
             
-            // TODO: Add locations view
-            
             Spacer()
         }
         .sheet(isPresented: $showingAddPoopSheet) {
